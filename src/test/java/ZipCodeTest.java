@@ -16,4 +16,14 @@ public class ZipCodeTest {
         Assert.assertEquals(errorMessage, "Oops, error on page. ZIP code should have 5 digits");
         driver.quit();
     }
+    @Test
+    public  void checkPositiveZipCode4digits() {
+        WebDriver driver = new ChromeDriver();
+        driver.get("https://sharelane.com/cgi-bin/register.py");
+        driver.findElement(By.name("zip_code")).sendKeys("12345");
+        driver.findElement(By.cssSelector("[value='Continue']")).click();
+        boolean elementOnPage = driver.findElement(By.cssSelector("[value = 'Register']")).isDisplayed();
+        Assert.assertTrue(elementOnPage);
+        driver.quit();
+    }
 }
